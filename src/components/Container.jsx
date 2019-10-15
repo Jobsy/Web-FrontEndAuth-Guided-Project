@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink, withRouter } from 'react-router-dom';
+import { Route, NavLink, withRouter, Redirect } from 'react-router-dom';
 import Login from './Login';
 import Quotes from './Quotes';
 import './Container.less';
@@ -38,7 +38,12 @@ export function Container(props) {
         <Route
           exact
           path='/quotes'
-          component={Quotes}
+          render={props => {
+            if (localStorage.getItem('token')) {
+              return <Quotes {...props} />
+            }
+            return <Redirect to='/' />
+          }}
         />
       </main>
     </div>
