@@ -17,11 +17,9 @@ export default function Quotes(props) {
     // axios.get('http://localhost:5000/api/quotes')
       withAuth().get('http://localhost:5000/api/quotes')
       .then(res => {
-        debugger
         setQuotes(res.data);
       })
       .catch(error => {
-        debugger
         alert(error.response.data.message);
       });
   }, []);
