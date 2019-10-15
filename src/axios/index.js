@@ -1,3 +1,4 @@
+import axios from 'axios';
 // CREATE A WRAPPER FOR THE AXIOS LIBRARY
 
 // This wrapper is a function that, when invoked,
@@ -7,5 +8,14 @@
 
 // Usage should look like: `withAuth().get('http://api.com/friends').then(etc)`
 export default function withAuth() {
+  const token = localStorage.getItem('token');
 
+  const instance = axios.create({
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  });
+
+  return instance;
 }
