@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Use the wrapped axios!
+// import axios from 'axios'; // Use the wrapped axios!
+import withAuth from '../axios';
 
 export default function Quotes(props) {
   const [quotes, setQuotes] = useState([]);
@@ -13,11 +14,14 @@ export default function Quotes(props) {
   useEffect(() => {
     // We need the wrapped axios instead, to send token
     // along automatically, in an Authorization header
-    axios.get('http://localhost:5000/api/quotes')
+    // axios.get('http://localhost:5000/api/quotes')
+      withAuth().get('http://localhost:5000/api/quotes')
       .then(res => {
+        debugger
         setQuotes(res.data);
       })
       .catch(error => {
+        debugger
         alert(error.response.data.message);
       });
   }, []);
