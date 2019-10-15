@@ -18,7 +18,7 @@ export default function Login(props) {
         props.history.push('/quotes');
       })
       .catch(error => {
-        debugger
+        alert(error.response.data.message);
         // Alert a sensible message pulled from the error object
       });
   };
