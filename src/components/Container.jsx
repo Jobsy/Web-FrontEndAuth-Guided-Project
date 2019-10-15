@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import Login from './Login';
 import Quotes from './Quotes';
 import './Container.less';
@@ -9,7 +9,9 @@ export function Container(props) {
   const onLogout = () => {
     // Implement!
     // 1- We need to flush token from local storage
+    localStorage.clear();
     // 2- We need to redirect users to login route
+    props.history.replace('/');
   };
 
   return (
@@ -43,4 +45,4 @@ export function Container(props) {
   );
 }
 
-export default Container;
+export default withRouter(Container);
