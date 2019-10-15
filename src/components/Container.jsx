@@ -38,16 +38,18 @@ export function Container(props) {
         <Route
           exact
           path='/quotes'
-          render={props => {
-            if (localStorage.getItem('token')) {
-              return <Quotes {...props} />
-            }
-            return <Redirect to='/' />
-          }}
+          render={props => withAthCheck(Quotes, props)}
         />
       </main>
     </div>
   );
+}
+
+function withAthCheck(Component, props) {
+  if (localStorage.getItem('token')) {
+    return <Component {...props} />
+  }
+  return <Redirect to='/' />;
 }
 
 export default withRouter(Container);
