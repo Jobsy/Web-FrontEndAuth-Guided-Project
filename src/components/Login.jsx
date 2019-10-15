@@ -18,10 +18,11 @@ export default function Login(props) {
         props.history.push('/quotes');
       })
       .catch(error => {
+        debugger
         // Alert a sensible message pulled from the error object
       });
   };
-debugger
+
   return (
     <div className='login'>
       <div className='login-inputs'>
