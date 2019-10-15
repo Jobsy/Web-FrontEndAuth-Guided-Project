@@ -1,18 +1,18 @@
 import React, { useRef } from 'react';
-import axiosWithAuth from '../axios';
+import axios from 'axios';
 
 export default function Login(props) {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
   const submit = () => {
-    axiosWithAuth().post('http://localhost:5000/login', {
+    axios.post('http://localhost:5000/login', {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     })
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        props.history.replace('/quotes')
+        props.history.replace('/quotes');
       })
       .catch(error => {
         alert(error.response.data.message);
