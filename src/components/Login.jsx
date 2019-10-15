@@ -11,9 +11,10 @@ export default function Login(props) {
       password: passwordRef.current.value,
     })
       .then(res => {
-        debugger
         // SUCCESS! Credentials are valid:
         //   1- Put the token string in local storage under a 'token' key
+        localStorage.setItem('token', res.data.token)
+        debugger
         //   2- Redirect users to the /quotes route
       })
       .catch(error => {
